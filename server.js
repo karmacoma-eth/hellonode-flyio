@@ -3,7 +3,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get(["/", "/:name"], (req, res) => {
-  greeting = "<h1>Hello From Node on Fly!</h1>";
+  // run `forge -V` and display the output
+  const { execSync } = require("child_process");
+  const forgeVersion = execSync("forge -V").toString();
+  greeting = forgeVersion;
+
   name = req.params["name"];
   if (name) {
     res.send(greeting + "</br>and hello to " + name);
